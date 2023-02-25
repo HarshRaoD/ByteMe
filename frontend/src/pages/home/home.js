@@ -2,14 +2,12 @@ import React from 'react'
 import FileUpload from '../../components/FileUpload/FileUpload'
 import Searchbar from '../../components/SearchBar/searchbar'
 
-const home = () => {
+const Home = () => {
   return (
-    <div>
-        <h1>Home Page</h1>
-        <Searchbar />
-        <FileUpload />
+    <div className=''>
+        <h4>Home</h4>
     </div>
   )
 }
 
-export default home
+export default Home

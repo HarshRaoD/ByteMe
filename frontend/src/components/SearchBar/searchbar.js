@@ -1,44 +1,31 @@
-import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import React, { useState } from 'react';
 
-const  Searchbar= () => {
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const handleInputChange = event => {
+    setSearchTerm(event.target.value);
+  };
+  
+  const handleSubmit = event => {
+    event.preventDefault();
+    
+    fetch(`https://example.com/api/search?q=${searchTerm}`)
+      .then(response => response.json())
+      .then(data => {
+        // Do something with the API response data here
+      })
+      .catch(error => console.error(error));
+  };
+  
+  return (
+    <div className='searchbar-container'>
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={searchTerm} onChange={handleInputChange} />
+      <button type="submit">Search</button>
+    </form>
+    </div>
+  );
+};
 
-const [myOptions, setMyOptions] = useState([])
-
-const getDataFromAPI = () => {
-	console.log("Options Fetched from API")
-
-	fetch('http://dummy.restapiexample.com/api/v1/employees').then((response) => {
-	return response.json()
-	}).then((res) => {
-	console.log(res.data)
-	for (var i = 0; i < res.data.length; i++) {
-		myOptions.push(res.data[i].employee_name)
-	}
-	setMyOptions(myOptions)
-	})
-}
-
-return (
-	<div style={{ marginLeft: '40%', marginTop: '60px' }}>
-	<h3>HowtoBasic</h3>
-	<Autocomplete
-		style={{ width: 500 }}
-		freeSolo
-		autoComplete
-		autoHighlight
-		options={myOptions}
-		renderInput={(params) => (
-		<TextField {...params}
-			onChange={getDataFromAPI}
-			variant="outlined"
-			label="Search Box"
-		/>
-		)}
-	/>
-	</div>
-);
-}
-
-export default Searchbar
+export default SearchBar;

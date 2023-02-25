@@ -1,3 +1,11 @@
+.searchbar-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
 .search-bar {
   display: flex;
   align-items: center;

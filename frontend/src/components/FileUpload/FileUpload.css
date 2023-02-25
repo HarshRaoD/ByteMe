@@ -1,65 +1,78 @@
-.form-container {
-  max-width: 500px;
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 500px;
+  border: 2px solid black ;
+  border-radius: .5rem;
+  padding: 10px;
+  background-color: #f1f0f0;
 }
 
-label {
-  display: block;
+.selected-file-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fbffc1;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
   margin-bottom: 10px;
 }
 
-input[type='file'] {
-  display: block;
-  margin-bottom: 20px;
+.selected-file-container button {
+  background-color: #dc143c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.selected-file {
+.file-select-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-.selected-file p {
-  margin: 0;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.selected-file button {
-  margin-left: 10px;
+input[type="file"] {
+  margin: 10px 0;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #7fff00;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 3px;
+  padding: 5px 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 150px;
+  transition: .5s;
 }
 
-.delete-button {
-  background-color: red;
+button:hover {
+  border-radius: 1rem;
+  transition: .5s;
+  color: black;
 }
 
-button:disabled {
+button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-button:hover {
-  background-color: #3e8e41;
-}
-
-@media (max-width: 600px) {
-  .form-container {
-    max-width: 100%;
+@media screen and (max-width: 600px) {
+  .file-upload-container {
+    margin: 10px;
   }
 }

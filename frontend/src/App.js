@@ -1,10 +1,24 @@
 import React from 'react';
-import FileUpload from './components/FileUpload/FileUpload';
+import NavigationBar from './components/Navbar/Navbar.js';
+import Home from './pages/home/Home.js';
+import Tools from './pages/tools/Tools.js';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <FileUpload />
+    <div className='App'>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/tools" element={<Tools />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
