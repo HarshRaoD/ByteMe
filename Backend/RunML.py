@@ -11,7 +11,7 @@ def researchPaperSummary(paper: str) -> str:
     summarizer = pipeline("summarization", model='pszemraj/led-base-book-summary')
     return summarizer(paper)
 
-def getCategories(abstract: str, categories: list):
+def getCategoryWeights(abstract: str, categories: list):
     summarizer = pipeline("zero-shot-classification", model='valhalla/distilbart-mnli-12-1')
     results = summarizer(abstract, categories)
     return results['labels'], results['scores']
@@ -48,15 +48,13 @@ def test_researchPaperSummary():
     """
     print(researchPaperSummary(text))
 
-def test_getCategories():
+def test_getCategoryWeights():
     abstract = """Predicting a human drivers lane-changing behaviour is a fundamental step for self-driving vehicles. It can also be used in Advanced Driver Assistance Systems (ADAS), Accident Prevention, and Regulation. Over the years, researchers have developed various techniques to achieve this objective, including the use of Back Propagating Neural Networks (BPNNs) and Recurrent Neural Networks (RNNs). The Next Generation Simulation (NGSIM) dataset, developed by the US Department of Transportation, provides the positional data for 4 highways across the US and is the basis for this project. The goal of this project is to produce a 3D simulation package in python that can be used by researchers to observe and validate the performance of their models
     To achieve this goal, the project was split into 2 tracks. The first track was focused on developing the simulating algorithm while trying to minimize the number of collisions that take place between vehicles. While the 2nd track focused on creating beautiful 3D models of vehicles (using the vpython package) that can be scaled according to the data. These 2 tracks were then merged to create the final model with the average collisions per frame being minimized to 70, 110, and 45 for the i80, us-101, and Peachtree highways respectively."""
-    print(getCategories(abstract))
+    print(getCategoryWeights(abstract))
 
 def test_getNouns():
     text = """Predicting a human drivers lane-changing behaviour is a fundamental step for self-driving vehicles. It can also be used in Advanced Driver Assistance Systems (ADAS), Accident Prevention, and Regulation. Over the years, researchers have developed various techniques to achieve this objective, including the use of Back Propagating Neural Networks (BPNNs) and Recurrent Neural Networks (RNNs). The Next Generation Simulation (NGSIM) dataset, developed by the US Department of Transportation, provides the positional data for 4 highways across the US and is the basis for this project. The goal of this project is to produce a 3D simulation package in python that can be used by researchers to observe and validate the performance of their models
     To achieve this goal, the project was split into 2 tracks. The first track was focused on developing the simulating algorithm while trying to minimize the number of collisions that take place between vehicles. While the 2nd track focused on creating beautiful 3D models of vehicles (using the vpython package) that can be scaled according to the data. These 2 tracks were then merged to create the final model with the average collisions per frame being minimized to 70, 110, and 45 for the i80, us-101, and Peachtree highways respectively.
     """
     print(getNouns(text))
-
-test_getNouns()
