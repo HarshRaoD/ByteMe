@@ -1,25 +1,44 @@
-import { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from 'react'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-function SearchBar() {
-  const [query, setQuery] = useState('');
+const  Searchbar= () => {
 
-  function handleSearch() {
-    console.log(`Searching for: ${query}`);
-    // Perform search functionality here
-  }
+const [myOptions, setMyOptions] = useState([])
 
-  return (
-    <div className="search-bar">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search"
-      />
-      <FaSearch onClick={handleSearch} />
-    </div>
-  );
+const getDataFromAPI = () => {
+	console.log("Options Fetched from API")
+
+	fetch('http://dummy.restapiexample.com/api/v1/employees').then((response) => {
+	return response.json()
+	}).then((res) => {
+	console.log(res.data)
+	for (var i = 0; i < res.data.length; i++) {
+		myOptions.push(res.data[i].employee_name)
+	}
+	setMyOptions(myOptions)
+	})
 }
 
-export default SearchBar;
+return (
+	<div style={{ marginLeft: '40%', marginTop: '60px' }}>
+	<h3>HowtoBasic</h3>
+	<Autocomplete
+		style={{ width: 500 }}
+		freeSolo
+		autoComplete
+		autoHighlight
+		options={myOptions}
+		renderInput={(params) => (
+		<TextField {...params}
+			onChange={getDataFromAPI}
+			variant="outlined"
+			label="Search Box"
+		/>
+		)}
+	/>
+	</div>
+);
+}
+
+export default Searchbar
