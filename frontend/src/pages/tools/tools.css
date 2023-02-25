@@ -1,6 +1,11 @@
 .tools-body {
     margin-top: 20px;
+    text-align: center;
 }
 .title {
     text-align: center;
+ }
+
+ .file-upload {
+    margin-bottom: 20px;
  }
