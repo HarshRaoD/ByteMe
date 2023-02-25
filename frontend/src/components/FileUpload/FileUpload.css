@@ -1,0 +1,65 @@
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type='file'] {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.selected-file {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.selected-file p {
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected-file button {
+  margin-left: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.delete-button {
+  background-color: red;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    max-width: 100%;
+  }
+}

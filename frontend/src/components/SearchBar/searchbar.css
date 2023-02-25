@@ -1,0 +1,21 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+input[type="text"] {
+  border: none;
+  flex-grow: 1;
+  margin-right: 4px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.fa-search {
+  cursor: pointer;
+}
