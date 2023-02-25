@@ -1,43 +1,59 @@
 import React, { useState } from 'react';
 import './FileUpload.css';
-import { FaFileAlt, FaTrashAlt } from 'react-icons/fa';
 
 function FileUpload() {
   const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
-  function handleFileChange(event) {
-    setFile(event.target.files[0]);
+  function handleFileChange(e) {
+    setFile(e.target.files[0]);
   }
 
-  function handleDelete() {
+  function handleDeleteClick() {
     setFile(null);
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setUploading(false);
+    }
+  }
+
   return (
-    <div className="file-upload-container">
-      <h2>Upload a File</h2>
-      <div className="file-container">
-        <div className="file-input-container">
-          {file ? (
-            <div className="selected-file">
-              <span className="selected-file-name">{file.name}</span>
-              <button className="selected-file-delete-button" onClick={handleDelete}>
-                <FaTrashAlt /> Delete
-              </button>
-            </div>
-          ) : (
-            <label htmlFor="file-input" className="choose-file-button">
-              <FaFileAlt /> Choose File
-            </label>
-          )}
-          <input
-            type="file"
-            id="file-input"
-            onChange={handleFileChange}
-            accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
-          />
-        </div>
-      </div>
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Choose file:
+          <input type="file" onChange={handleFileChange} />
+        </label>
+        {file && (
+          <div className="selected-file">
+            <p>{file.name}</p>
+            <button type="delete-button" onClick={handleDeleteClick}>
+              Delete
+            </button>
+          </div>
+        )}
+        <button type="submit" disabled={!file || uploading}>
+          {uploading ? 'Uploading...' : 'Upload'}
+        </button>
+      </form>
     </div>
   );
 }

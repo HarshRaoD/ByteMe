@@ -1,21 +1,10 @@
-import './App.css';
-import Home from './pages/home/home';
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import React from 'react';
+import FileUpload from './components/FileUpload/FileUpload';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />}/>
-        </Routes>
-      </Router>
-      
+    <div>
+      <FileUpload />
     </div>
   );
 }
