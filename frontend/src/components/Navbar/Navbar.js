@@ -13,7 +13,8 @@ function NavigationBar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/tools">Tools</Nav.Link>
+                        <Nav.Link href="/upload">Upload</Nav.Link>
+                        <Nav.Link href="/search">Search</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="https://github.com/HarshRaoD/ByteMe" target='_blank'>Code ❤️</Nav.Link>

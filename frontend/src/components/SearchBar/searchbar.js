@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
@@ -9,13 +10,19 @@ const SearchBar = () => {
   
   const handleSubmit = event => {
     event.preventDefault();
-    
-    fetch(`https://example.com/api/search?q=${searchTerm}`)
+    const formData = new FormData();
+    formData.append('keyword', searchTerm);
+    fetch('http://localhost:9000/searchPapers', {
+      method: 'POST',
+      body: formData
+    })
       .then(response => response.json())
       .then(data => {
-        // Do something with the API response data here
+        setSearchResults(data); // Update the state variable with search results
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error);
+      });
   };
   
   return (
@@ -24,6 +31,11 @@ const SearchBar = () => {
       <input type="text" value={searchTerm} onChange={handleInputChange} />
       <button type="submit">Search</button>
     </form>
+    <ul>
+      {searchResults.map(result => (
+        <li key={result.link}>{result.link} <br /> {result.title}</li>
+      ))}
+    </ul>
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import React from 'react';
 import NavigationBar from './components/Navbar/Navbar.js';
-import Home from './pages/home/home.js';
-import Tools from './pages/tools/Tools.js';
+import Home from './pages/home/Home.js';
+import Tools from './pages/upload/Upload.js';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+import Search from './pages/search/Search.js';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/tools" element={<Tools />} />
+          <Route path="/upload" element={<Tools />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Router>
     </div>
