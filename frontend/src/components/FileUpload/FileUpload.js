@@ -18,7 +18,7 @@ const FileUpload = () => {
 
   const handleFileUpload = async () => {
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("paper", selectedFile);
 
     try {
       // Upload file to endpoint localhost:9000/oneLineSummary/
@@ -27,7 +27,7 @@ const FileUpload = () => {
         body: formData,
       });
       const oneLineSummaryData = await oneLineSummaryResponse.json();
-      setOneLineSummary(oneLineSummaryData.summary);
+      setOneLineSummary(oneLineSummaryData.generated_text);
 
       // Upload file to endpoint localhost:9000/getWordCloud/
       const wordCloudResponse = await fetch("http://localhost:9000/getWordCloud/", {
@@ -40,7 +40,7 @@ const FileUpload = () => {
       // Handle success logic here
     } catch (error) {
       setOneLineSummary("Error in generating the summary");
-      setWordCloud("Error in generating the word cloud")
+      setWordCloud("")
     }
   };
 
@@ -68,7 +68,7 @@ const FileUpload = () => {
       {oneLineSummary && (
         <div>
           <h2>One-line summary:</h2>
-          <p>{oneLineSummary}</p>
+          <p>{oneLineSummary.generated_text}</p>
         </div>
       )}
       {wordCloud && (

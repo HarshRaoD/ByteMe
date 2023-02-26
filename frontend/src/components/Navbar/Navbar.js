@@ -7,7 +7,7 @@ function NavigationBar() {
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand href="/home">
-                    <h4><b>Research <i>Engine</i></b></h4>
+                    <h4><b>ReSearch <i>Engine</i></b></h4>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

@@ -1,5 +1,6 @@
 import asyncio
 from flask import Flask, request
+from flask_cors import CORS
 import os
 from pathlib import Path
 import shutil
@@ -24,7 +25,7 @@ app = Flask(__name__)
 except Exception as e:
     app.logger.info("An error occurred while creating temp folder")
     app.logger.error("Exception occurred : {}".format(e))'''
-
+CORS(app, origins='*')
 
 @app.route('/hello/', methods=['GET', 'POST'])
 def welcome():
@@ -34,7 +35,7 @@ def welcome():
 def getAccounts():
     return list(supabase.table('Accounts').select("*").execute())
 
-@app.route('/searchPapers/', methods=['GET'])
+@app.route('/searchPapers/', methods=['POST'])
 def searchPapers():
     # Getting data
     keyword = request.form['keyword']

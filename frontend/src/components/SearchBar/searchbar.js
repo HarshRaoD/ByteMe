@@ -12,9 +12,10 @@ const SearchBar = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('keyword', searchTerm);
-    fetch('http://localhost:9000/searchPapers', {
+    console.log(formData)
+    fetch('http://localhost:9000/searchPapers/', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
       .then(response => response.json())
       .then(data => {
@@ -25,17 +26,23 @@ const SearchBar = () => {
       });
   };
   
+  
   return (
     <div className='searchbar-container'>
     <form onSubmit={handleSubmit}>
       <input type="text" value={searchTerm} onChange={handleInputChange} />
       <button type="submit">Search</button>
     </form>
-    <ul>
+    <br />
       {searchResults.map(result => (
-        <li key={result.link}>{result.link} <br /> {result.title}</li>
+        <li key={result.link}>
+           
+          <b>{result.title}</b>
+          <br />
+          <a href={result.link} target='_blank'>{result.link}</a> 
+        </li>
       ))}
-    </ul>
+    
     </div>
   );
 };

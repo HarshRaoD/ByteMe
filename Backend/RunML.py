@@ -2,7 +2,7 @@ from transformers import pipeline
 import nltk
 
 nltk.download('punkt')
-
+nltk.download('averaged_perceptron_tagger')
 def oneLineSummary(abstract: str) -> str:
     summarizer = pipeline("text2text-generation", model='snrspeaks/t5-one-line-summary')
     return summarizer(abstract)

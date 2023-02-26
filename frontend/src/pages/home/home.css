@@ -1,4 +1,35 @@
 .title {
     text-align: center;
     margin-top: 30px;
- }
+}
+
+.center {
+    text-align: center;
+}
+
+.imageone{
+    margin: 0 auto;
+    width: 10%;
+    height: auto;
+    
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        display: block;
+    
+    }
+    .card {
+        display: block;
+        text-align: center;
+    }
+  }
